@@ -50,6 +50,10 @@ The architecture
                             │ Search • Logs • Metrics│
                             │ Runbooks • Diagnosis   │
                             └────────────────────────┘
+
+
+<img width="1536" height="1024" alt="ChatGPT Image Aug 14, 2026, 10_32_25 PM" src="https://github.com/user-attachments/assets/4a1d702a-188b-4b62-8a79-9874673261eb" />
+
                             
 
               
