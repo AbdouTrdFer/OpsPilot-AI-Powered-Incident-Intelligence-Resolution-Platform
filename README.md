@@ -51,4 +51,5 @@ The architecture
                             │ Runbooks • Diagnosis   │
                             └────────────────────────┘
                             
-                          <img width="1536" height="1024" alt="ChatGPT Image Aug 14, 2026, 10_32_25 PM" src="https://github.com/user-attachments/assets/a21d53e9-c222-453c-8c04-cd4a1fbb4126" />
+
+              
