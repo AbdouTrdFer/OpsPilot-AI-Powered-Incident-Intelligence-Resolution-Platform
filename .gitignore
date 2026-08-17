@@ -1,0 +1,29 @@
+# Build output
+target/
+build/
+out/
+
+# Maven wrapper runtime artifact
+.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+
+# IDEs and editors
+.idea/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
