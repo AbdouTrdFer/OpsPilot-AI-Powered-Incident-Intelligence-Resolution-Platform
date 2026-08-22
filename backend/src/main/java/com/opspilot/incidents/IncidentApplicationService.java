@@ -42,6 +42,24 @@ public class IncidentApplicationService {
 			.orElseThrow(() -> new IncidentNotFoundException(id));
 	}
 
+	public Incident changeStatus(UUID id, IncidentStatus nextStatus) {
+		Incident incident = get(id);
+		if (incident.status() == nextStatus) {
+			return incident;
+		}
+
+		if (!canMoveTo(incident.status(), nextStatus)) {
+			throw new InvalidIncidentStatusTransitionException(incident.id(), incident.status(), nextStatus);
+		}
+
+		return incidentRepository.save(incident.withStatus(nextStatus, Instant.now()));
+	}
+
+	private boolean canMoveTo(IncidentStatus currentStatus, IncidentStatus nextStatus) {
+		return (currentStatus == IncidentStatus.OPEN && nextStatus == IncidentStatus.INVESTIGATING)
+			|| (currentStatus == IncidentStatus.INVESTIGATING && nextStatus == IncidentStatus.RESOLVED);
+	}
+
 	private String normalizeDescription(String description) {
 		if (description == null) {
 			return null;

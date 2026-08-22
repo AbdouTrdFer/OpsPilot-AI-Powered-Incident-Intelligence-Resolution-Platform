@@ -33,4 +33,18 @@ public class IncidentExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(problemDetail);
 	}
 
+	@ExceptionHandler(InvalidIncidentStatusTransitionException.class)
+	public ResponseEntity<ProblemDetail> handleInvalidStatusTransition(
+			InvalidIncidentStatusTransitionException exception) {
+		ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+			HttpStatus.CONFLICT,
+			"Cannot move incident from " + exception.getCurrentStatus() + " to " + exception.getRequestedStatus());
+		problemDetail.setTitle("Invalid incident status transition");
+		problemDetail.setProperty("incidentId", exception.getIncidentId());
+		problemDetail.setProperty("currentStatus", exception.getCurrentStatus());
+		problemDetail.setProperty("requestedStatus", exception.getRequestedStatus());
+
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(problemDetail);
+	}
+
 }

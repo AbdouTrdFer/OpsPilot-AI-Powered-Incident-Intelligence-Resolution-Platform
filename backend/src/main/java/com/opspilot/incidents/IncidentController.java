@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +41,13 @@ public class IncidentController {
 	@GetMapping("/{id}")
 	public IncidentResponse get(@PathVariable UUID id) {
 		return IncidentResponse.from(applicationService.get(id));
+	}
+
+	@PatchMapping("/{id}/status")
+	public IncidentResponse changeStatus(
+			@PathVariable UUID id,
+			@Valid @RequestBody UpdateIncidentStatusRequest request) {
+		return IncidentResponse.from(applicationService.changeStatus(id, request.status()));
 	}
 
 }
